@@ -11,22 +11,20 @@
     var dataManager = {
     	getData: getData,
       setUser: setUser,
-      getUsers: getUsers
+      getUsers: getUsers,
+      clearUsers: clearUsers
     }
     return dataManager;
     function getData() {
-      /*
-      return $http.get(urlApi).then(success, error);
+      
+      return $http.get('data/users.json').then(success, error);
       function success(data){
         var news = data.data;
-        news.map(function(item){
-            item['image'] = item.hasOwnProperty('image') ? item.image:'http://lorempixel.com/300/300';
-        });
       	return news;
       }
       function error(err){
       	return err;
-      }*/
+      }
     }
 
     function setUser(user){
@@ -35,6 +33,10 @@
 
     function getUsers(){
       return users;
+    }
+
+    function clearUsers(){
+      users = [];
     }
   }
 

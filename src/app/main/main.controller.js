@@ -8,6 +8,7 @@
   /** @ngInject */
   function MainController($timeout, MainService) {
     var vm = this;
+    var moves = 0;
     angular.extend(vm, {
       users: [],
       user: {name: '', win:0},
@@ -16,7 +17,9 @@
       setUser: setUser,
       errorInput: false,
       play: false,
-      changeValue: changeValue
+      changeValue: changeValue,
+      nextMatch: nextMatch,
+      resetMatch: resetMatch
 
     });
     activate();
@@ -31,29 +34,52 @@
         }
     }
     function changeValue(row, column){
-      vm.arrayBoard[row][column] = vm.turnPlayerOne ? 1:2; 
-      var turn = vm.turnPlayerOne ? 1:2; 
-      _check(turn, vm.arrayBoard, row, column);
-      vm.turnPlayerOne = !vm.turnPlayerOne;
+      if( vm.arrayBoard[row][column] === 0){
+        vm.arrayBoard[row][column] = vm.turnPlayerOne ? 1:2; 
+        var turn = vm.turnPlayerOne ? 1:2; 
+        _check(turn, vm.arrayBoard, row, column);
+        vm.turnPlayerOne = !vm.turnPlayerOne;
+        moves++;
+      }
+     
+    }
+
+    function nextMatch(){
+      vm.match++;
+      _resetGame();
+    }
+    function resetMatch(all){
+      _resetGame(all);
     }
     function activate() {
       _initArray();
-      
     }
 
     //Internal Functions
 
     // Init Array for tableboard
     function _initArray(){
-     
        vm.arrayBoard= new Array(new Array(0,0,0), new Array(0,0,0), new Array(0,0,0));
+    }
+
+    function _resetGame(all){
+      _initArray();
+      vm.finishMatch = false;
+      moves = 0;
+      if(all){
+        vm.users= []
+        vm.match = 0;
+        vm.play = false;
+        vm.nameUser= "Jugador n° 1";
+        vm.user={name: '', win:0},
+        MainService.clearUsers();
+      }
     }
 
     //Set Name Player One and Two
     function _addUser(user){
       vm.users = MainService.getUsers();
       if(vm.users.length < 3){
-        console.log(user);
          var userName = {
           name: user,
           win: 0
@@ -71,8 +97,13 @@
     //Init play tictactoe
     function _initPlay(){
       vm.play = true;
-      vm.matc= 0;
+      vm.match= 0;
+      vm.finishMatch = false;
     }
+
+    /*
+      Check Rows, Columns and Diagonals 
+    */
     function _checkColumn(turn, turnCount, array, row, index){
       turnCount = array[row][index] == turn ? turnCount+1: turnCount;
       var returnValue = turnCount == 3 ? 3:2;
@@ -110,16 +141,28 @@
       }
     }
 
+
+
+
     function _check(turn, array, row, column){
       var countRow = _checkColumn(turn, 0, array, row, 0);
       var countCol = _checkRow(turn, 0, array, column, 0);
       var countLineFirst = _checkLineFirst(turn, 0, array, 0, 0);
       var countLineSecond = _checkLineSecond(turn, 0, array, 2, 0);
       if( countRow== 3 || countCol === 3 || countLineFirst === 3 ||  countLineSecond === 3){
-        vm.match ++;
-        console.log(turn);
-        console.log(vm.users[turn-1]);
+        vm.finishMatch = true;
+        vm.tieMatch = false;
+        vm.users[turn-1].win++;
+        vm.winner = vm.users[turn-1];
+        vm.result=vm.winner.win==2 ? 'Campeón '+vm.winner.name: 'Ganó '+vm.winner.name;
+      }else{
+        if(moves == 8){
+          vm.finishMatch = true;
+          vm.result= 'Empate';
+          vm.tieMatch = true;
+        }
       }
+     
 
     }
   }

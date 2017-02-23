@@ -10,14 +10,14 @@
     </div>
     <div class="mdl-card__supporting-text">
       <form  ng-submit="main.setUser(main.user.name)">
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <div class="mdl-textfield mdl-js-textfield ">
           <input class="mdl-textfield__input animated" ng-class="{'error-input': main.errorInput, 'shake':  main.errorInput}" ng-model="main.user.name" type="text" >
           <label class="mdl-textfield__label" for="sample1">Nombre del jugador</label>
         </div>
       </form>
     </div>
     <div class="mdl-card__actions mdl-card--border">
-      <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" ng-click="main.setUser()">
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" ng-click="main.setUser(main.user.name)">
         continuar
       </button>
     </div>
@@ -28,10 +28,21 @@
        <div class="player " ng-class="{'player__active-1': main.turnPlayerOne}">
          <span ng-bind="main.users[0].name"></span>
          <span>: X</span>
+
+         <div class="winners">
+           <div class="star" ng-repeat="n in [].constructor(main.users[0].win) track by $index">
+             <i class="material-icons">star_rate</i>
+           </div>
+         </div>
        </div>
        <div class="player"  ng-class="{'player__active-2': !main.turnPlayerOne}">
          <span ng-bind="main.users[1].name"></span>
          <span>: O</span>
+         <div class="winners">
+           <div class="star" ng-repeat="n in [].constructor(main.users[1].win) track by $index">
+             <i class="material-icons">star_rate</i>
+           </div>
+         </div>
        </div>
     </div>
   </div>
@@ -48,14 +59,23 @@
         </div>
       </div>
       </div>
+
+      <div class="winner-board animated zoomIn" ng-if="main.finishMatch">
+            <div class="text" >
+              <span ng-bind="main.result"></span>
+            </div>
+      </div>
     </div>
 
-    <div class="demo-card-wide mdl-card mdl-shadow--2dp card-player-turn" ng-if="main.play">
+    <div class="card-buttons " ng-if="main.play">
         <div class="row">
-           <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" ng-click="main.setUser()">
-                  continuar
+           <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" ng-click="main.resetMatch(false)" ng-if="main.tieMatch">
+                  Reset game
            </button>
-           <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" ng-click="main.setUser()">
+           <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" ng-click="main.resetMatch(true)" ng-if=" main.winner.win==2">
+                  Reset match
+           </button>
+           <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" ng-click="main.nextMatch()" ng-if="main.finishMatch && !main.tieMatch && main.winner.win!=2">
                   continuar
            </button>
         </div>
