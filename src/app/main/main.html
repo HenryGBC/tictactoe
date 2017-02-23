@@ -9,9 +9,9 @@
       <h2 class="mdl-card__title-text" ng-bind="main.nameUser"></h2>
     </div>
     <div class="mdl-card__supporting-text">
-      <form  ng-submit="main.setUser()">
+      <form  ng-submit="main.setUser(main.user.name)">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <input class="mdl-textfield__input animated" ng-class="{'error-input': main.errorInput, 'shake':  main.errorInput}" ng-model="main.userName" type="text" >
+          <input class="mdl-textfield__input animated" ng-class="{'error-input': main.errorInput, 'shake':  main.errorInput}" ng-model="main.user.name" type="text" >
           <label class="mdl-textfield__label" for="sample1">Nombre del jugador</label>
         </div>
       </form>
@@ -22,7 +22,19 @@
       </button>
     </div>
   </div>
+ <div class="demo-card-wide mdl-card mdl-shadow--2dp card-player-turn" ng-if="main.play">
+    <div class="row">
 
+       <div class="player " ng-class="{'player__active-1': main.turnPlayerOne}">
+         <span ng-bind="main.users[0].name"></span>
+         <span>: X</span>
+       </div>
+       <div class="player"  ng-class="{'player__active-2': !main.turnPlayerOne}">
+         <span ng-bind="main.users[1].name"></span>
+         <span>: O</span>
+       </div>
+    </div>
+  </div>
   <div class="demo-card-wide mdl-card mdl-shadow--2dp card-play" ng-if="main.play">
     <div class="board">
       <div class="row" ng-repeat="row in main.arrayBoard track by $index">
