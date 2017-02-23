@@ -134,6 +134,17 @@ main {
   }
 
   .card-play{
+    .btn-range{
+      position: absolute;
+      top: 4px;
+      left: 5px; 
+      cursor: pointer; 
+      z-index: 100;
+      i{
+        font-size: 30px;
+        color: #353535;
+      }
+    }
     .board{
       height: 300px;
       padding: 20px 0 0px 0;
@@ -193,6 +204,48 @@ main {
         }
       }
       
+    }
+
+    .range-users{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: white;
+      overflow-y: auto;
+      overflow-x: hidden;
+      z-index: 1000;
+      &__activate{
+        width: 100%;
+      }
+      .mdl-list{
+        list-style: none;
+        ont-size: 14px;
+        margin: 0 auto;
+        padding: 0;
+        padding: 35px;
+
+        .mdl-list__item{
+          border-bottom: 1px solid rgba(128, 128, 128, 0.42);
+          padding: 6px 0;
+
+          &-primary-content{
+            display: flex;
+            justify-content: space-between;
+
+            span:nth-child(1){
+              width: 15%;
+            }
+            span:nth-child(2){
+              width: 40%;
+              text-align: left;
+            }
+            span:nth-child(3){
+              width: 45%;
+              text-align: right; 
+            }
+          }
+        }
+      }
     }
 
   }
@@ -273,7 +326,7 @@ main {
     align-items: center;
     font-size: 39px;
     font-weight: 600;
-    z-index: 100000;
+    z-index: 10;
   }
 }
 /**

@@ -47,6 +47,9 @@
     </div>
   </div>
   <div class="demo-card-wide mdl-card mdl-shadow--2dp card-play" ng-if="main.play">
+    <div class="btn-range" ng-click="main.range=true">
+      <i class="material-icons">list</i>
+    </div>
     <div class="board">
       <div class="row" ng-repeat="row in main.arrayBoard track by $index">
         <div class="square" ng-repeat="column in row  track by $index" ng-click="main.changeValue($parent.$index, $index)" id="square-{{$parent.$index}}-{{$index}}">
@@ -64,6 +67,28 @@
             <div class="text" >
               <span ng-bind="main.result"></span>
             </div>
+      </div>
+
+      <div class="range-users animated slideInLeft" ng-if="main.range">
+        <div class="btn-range btn-range__close" ng-click="main.range=false">
+          <i class="material-icons">arrow_back</i>
+        </div>
+        <ul class="demo-list-icon mdl-list">
+           <li class="mdl-list__item" >
+              <div class="mdl-list__item-primary-content">
+                <span><strong>Pos</strong></span>
+                <span><strong>Username</strong></span>
+                <span><strong>Pts</strong></span>
+              </div>
+            </li>
+            <li class="mdl-list__item" ng-repeat="user in main.usersList | orderBy:'-pts'">
+              <div class="mdl-list__item-primary-content">
+                <span>{{$index + 1}}</span>
+                <span>{{user.user}}</span>
+                <span>{{user.pts}}</span>
+              </div>
+            </li>
+        </ul>
       </div>
     </div>
 

@@ -9,18 +9,18 @@
   function MainService($http) {
     var users = [];
     var dataManager = {
-    	getData: getData,
+    	getUsersList: getUsersList,
       setUser: setUser,
       getUsers: getUsers,
       clearUsers: clearUsers
     }
     return dataManager;
-    function getData() {
+    function getUsersList() {
       
       return $http.get('data/users.json').then(success, error);
       function success(data){
-        var news = data.data;
-      	return news;
+        console.log(data)
+        return data.data;
       }
       function error(err){
       	return err;

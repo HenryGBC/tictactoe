@@ -19,7 +19,10 @@
       play: false,
       changeValue: changeValue,
       nextMatch: nextMatch,
-      resetMatch: resetMatch
+      resetMatch: resetMatch,
+      usersList: [],
+      range: false,
+      showRange: showRange
 
     });
     activate();
@@ -51,8 +54,14 @@
     function resetMatch(all){
       _resetGame(all);
     }
+
+    function showRange(){
+      vm.range=!vm.range;
+      console.log(vm.range);
+    }
     function activate() {
       _initArray();
+      _initUsersList();
     }
 
     //Internal Functions
@@ -164,6 +173,15 @@
       }
      
 
+    }
+
+
+
+    function _initUsersList(){
+      MainService.getUsersList().then(function(data){
+        console.log(data);
+        vm.usersList = data;
+      })
     }
   }
 
