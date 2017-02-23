@@ -1,0 +1,205 @@
+/**
+ *  Do not remove the comments below. It's the markers used by wiredep to inject
+ *  sass dependencies when defined in the bower.json of your dependencies
+ */
+// bower:less
+// endbower
+
+@import url(http://fonts.googleapis.com/css?family=Roboto:300,400,500,700);
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../../bower_components/material-design-iconfont/iconfont/MaterialIcons-Regular.eot); /* For IE6-8 */
+  src: local('Material Icons'),
+       local('MaterialIcons-Regular'),
+       url(../../bower_components/material-design-iconfont/iconfont/MaterialIcons-Regular.woff2) format('woff2'),
+       url(../../bower_components/material-design-iconfont/iconfont/MaterialIcons-Regular.woff) format('woff'),
+       url(../../bower_components/material-design-iconfont/iconfont/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+main {
+  padding: 20px;
+  background: #fafafa;
+}
+.acme-card-wide {
+  &.mdl-card {
+    width: 100%;
+  }
+
+  > .mdl-card__title {
+    color: #fff;
+    height: 176px;
+    background: url('../assets/images/yeoman.png') center / cover;
+    background-size: 110px;
+    background-repeat: no-repeat;
+  }
+
+  > .mdl-card__title > .mdl-card__title-text {
+    color: #000;
+  }
+
+  > .mdl-card__menu {
+    color: #000;
+  }
+
+  > .mdl-card__actions {
+    text-align: center;
+  }
+}
+
+.acme-card-square {
+  &.mdl-card {
+    width: 100%;
+    min-height: 200px;
+  }
+
+  > .mdl-card__title {
+    color: #fff;
+    background: #283593;
+  }
+
+  > .mdl-card__media {
+    color: #fff;
+    background: none;
+    text-align: center;
+    img {
+      height: 100px;
+    }
+  }
+}
+
+
+.center-layout{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.main-content{
+  height: 100vh;
+
+  .header-title{
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 43px;
+
+    h1{
+      margin: 0 auto;
+      border-bottom: 5px solid #3f51b5;
+      width: 250px;
+    }
+  }
+
+  .card-users{
+    padding: 16px;
+
+    .mdl-card__supporting-text{
+      padding-bottom: 47px;
+    }
+    .error-input{
+      border-bottom: 1px solid red;
+    }
+    .mdl-card__actions{
+      text-align: right;
+    }
+  }
+
+  .card-play{
+    .board{
+      height: 300px;
+      padding: 20px 0 0px 0;
+      .row{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .square{
+          width: 80px;
+          height: 80px;
+          cursor: pointer;
+
+          .value{
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 70px;
+            text-transform: uppercase;
+
+            &__p1{
+              color: #3f51b5;
+            }
+            &__p2{
+              color: #19b78b;
+            }
+          }
+        }
+
+        #square-0-0{
+          border-right: 3px solid black;
+          border-bottom: 3px solid black;
+        }
+         #square-0-1{
+          border-right: 3px solid black;
+          border-bottom: 3px solid black;
+        }
+         #square-0-2{
+          border-bottom: 3px solid black;
+        }
+         #square-1-0{
+          border-right: 3px solid black;
+          border-bottom: 3px solid black;
+        }
+         #square-1-1{
+          border-right: 3px solid black;
+          border-bottom: 3px solid black;
+        }
+         #square-1-2{
+          border-bottom: 3px solid black;
+        }
+         #square-2-0{
+          border-right: 3px solid black;
+        }
+         #square-2-1{
+          border-right: 3px solid black;
+        }
+      }
+      
+    }
+
+  }
+}
+/**
+ *  Do not remove the comment below. It's the markers used by gulp-inject to inject
+ *  all your sass files automatically
+ */
+// injector
+// endinjector
