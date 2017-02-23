@@ -32,12 +32,13 @@
     }
     function changeValue(row, column){
       vm.arrayBoard[row][column] = vm.turnPlayerOne ? 1:2; 
+      var turn = vm.turnPlayerOne ? 1:2; 
+      _check(turn, vm.arrayBoard, row, column);
       vm.turnPlayerOne = !vm.turnPlayerOne;
-       var turn = vm.turnPlayerOne ? 1:2; 
-      _sheck(turn, vm.arrayBoard, row, column, 0);
     }
     function activate() {
       _initArray();
+      
     }
 
     //Internal Functions
@@ -70,24 +71,56 @@
     //Init play tictactoe
     function _initPlay(){
       vm.play = true;
-      console.log(vm.users);
-      console.log(vm.users.length);
+      vm.matc= 0;
+    }
+    function _checkColumn(turn, turnCount, array, row, index){
+      turnCount = array[row][index] == turn ? turnCount+1: turnCount;
+      var returnValue = turnCount == 3 ? 3:2;
+      if(index == 2){
+        return returnValue;
+      }else{
+        return _checkColumn(turn, turnCount, array, row, index+1);
+      }
+    }
+    function _checkRow(turn, turnCount, array, column, index){
+      turnCount = array[index][column] == turn ? turnCount+1: turnCount;
+      var returnValue = turnCount == 3 ? 3:2;
+      if(index == 2){
+        return returnValue;
+      }else{
+        return _checkRow(turn, turnCount, array, column, index+1);
+      }
+    }
+    function _checkLineFirst(turn, turnCount, array, indexRow, indexCol){
+      turnCount = array[indexRow][indexCol] == turn ? turnCount+1: turnCount;
+      var returnValue = turnCount == 3 ? 3:2;
+      if(indexRow == 2){
+        return returnValue;
+      }else{
+        return _checkLineFirst(turn, turnCount, array, indexRow+1, indexCol+1);
+      }
+    }
+    function _checkLineSecond(turn, turnCount, array, indexRow, indexCol){
+      turnCount = array[indexRow][indexCol] == turn ? turnCount+1: turnCount;
+      var returnValue = turnCount == 3 ? 3:2;
+      if(indexCol == 2){
+        return returnValue;
+      }else{
+        return _checkLineSecond(turn, turnCount, array, indexRow-1, indexCol+1);
+      }
     }
 
-    function _sheck(turn, array, row, column, cont){
-      if(row >= 0 && row <=3){
-        console.log(array[row][column+1]);
-         if(array[row][column+1]==turn){
-              console.log(cont);
-            _sheck(turn, array, row+1, column, cont+1);
-         }
-        
+    function _check(turn, array, row, column){
+      var countRow = _checkColumn(turn, 0, array, row, 0);
+      var countCol = _checkRow(turn, 0, array, column, 0);
+      var countLineFirst = _checkLineFirst(turn, 0, array, 0, 0);
+      var countLineSecond = _checkLineSecond(turn, 0, array, 2, 0);
+      if( countRow== 3 || countCol === 3 || countLineFirst === 3 ||  countLineSecond === 3){
+        vm.match ++;
+        console.log(turn);
+        console.log(vm.users[turn-1]);
       }
-       if(array[row][column+1]==turn){
-              console.log(cont);
-            _sheck(turn, array, row+1, column, cont+1);
-         }
-      
+
     }
   }
 
