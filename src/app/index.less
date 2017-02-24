@@ -5,8 +5,6 @@
 // bower:less
 // endbower
 
-@import url(http://fonts.googleapis.com/css?family=Roboto:300,400,500,700);
-
 @font-face {
   font-family: 'Material Icons';
   font-style: normal;
@@ -48,52 +46,8 @@ main {
   padding: 20px;
   background: #fafafa;
 }
-.acme-card-wide {
-  &.mdl-card {
-    width: 100%;
-  }
 
-  > .mdl-card__title {
-    color: #fff;
-    height: 176px;
-    background: url('../assets/images/yeoman.png') center / cover;
-    background-size: 110px;
-    background-repeat: no-repeat;
-  }
 
-  > .mdl-card__title > .mdl-card__title-text {
-    color: #000;
-  }
-
-  > .mdl-card__menu {
-    color: #000;
-  }
-
-  > .mdl-card__actions {
-    text-align: center;
-  }
-}
-
-.acme-card-square {
-  &.mdl-card {
-    width: 100%;
-    min-height: 200px;
-  }
-
-  > .mdl-card__title {
-    color: #fff;
-    background: #283593;
-  }
-
-  > .mdl-card__media {
-    color: #fff;
-    background: none;
-    text-align: center;
-    img {
-      height: 100px;
-    }
-  }
-}
 
 
 .center-layout{
@@ -115,7 +69,7 @@ main {
     h1{
       margin: 0 auto;
       border-bottom: 5px solid #3f51b5;
-      width: 250px;
+      width: 320px;
     }
   }
 
@@ -271,7 +225,7 @@ main {
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 19px;
+        font-size: 16px;
         transition: all 0.33s;
 
         &__active-1{
@@ -327,6 +281,11 @@ main {
     font-size: 39px;
     font-weight: 600;
     z-index: 10;
+
+    .text{
+      line-height: 35px;
+      text-align: center;
+    }
   }
 }
 /**

@@ -81,6 +81,7 @@
         vm.play = false;
         vm.nameUser= "Jugador n° 1";
         vm.user={name: '', win:0},
+        vm.winner = {};
         MainService.clearUsers();
       }
     }
@@ -179,7 +180,6 @@
 
     function _initUsersList(){
       MainService.getUsersList().then(function(data){
-        console.log(data);
         vm.usersList = data;
       })
     }

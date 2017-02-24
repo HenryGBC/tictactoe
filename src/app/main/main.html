@@ -10,8 +10,8 @@
     </div>
     <div class="mdl-card__supporting-text">
       <form  ng-submit="main.setUser(main.user.name)">
-        <div class="mdl-textfield mdl-js-textfield ">
-          <input class="mdl-textfield__input animated" ng-class="{'error-input': main.errorInput, 'shake':  main.errorInput}" ng-model="main.user.name" type="text" >
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input animated " ng-class="{'error-input': main.errorInput, 'shake':  main.errorInput}" ng-model="main.user.name" type="text" >
           <label class="mdl-textfield__label" for="sample1">Nombre del jugador</label>
         </div>
       </form>
@@ -48,8 +48,12 @@
   </div>
   <div class="demo-card-wide mdl-card mdl-shadow--2dp card-play" ng-if="main.play">
     <div class="btn-range" ng-click="main.range=true">
-      <i class="material-icons">list</i>
+      <i class="material-icons" id="tt3" >list</i>
+      <div class="mdl-tooltip mdl-tooltip--large" for="tt3">
+    Ver Puntajes
     </div>
+    </div>
+    
     <div class="board">
       <div class="row" ng-repeat="row in main.arrayBoard track by $index">
         <div class="square" ng-repeat="column in row  track by $index" ng-click="main.changeValue($parent.$index, $index)" id="square-{{$parent.$index}}-{{$index}}">

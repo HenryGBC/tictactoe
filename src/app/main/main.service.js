@@ -19,7 +19,6 @@
       
       return $http.get('data/users.json').then(success, error);
       function success(data){
-        console.log(data)
         return data.data;
       }
       function error(err){
